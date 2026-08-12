@@ -1,0 +1,141 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─────────────────────────────────────────────────────────────
+// USERS
+// Kept minimal on purpose. Right now this exists mainly for the
+// ADMIN (Profe Javi's login to the admin panel). Customer accounts
+// are a "later" feature — see the notes in chat. No password field
+// yet: when you add accounts, use a managed auth provider instead
+// of storing password hashes yourself.
+// ─────────────────────────────────────────────────────────────
+model User {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  email     String   @unique
+  name      String?
+  role      Role     @default(USER)
+
+  orders Order[] // orders placed while logged in
+}
+
+// ─────────────────────────────────────────────────────────────
+// EBOOK  (the product)
+// ─────────────────────────────────────────────────────────────
+model Ebook {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  published Boolean  @default(false)
+
+  slug        String  @unique @db.VarChar(255) // clean URLs: /libros/universo-de-los-numeros
+  title       String  @db.VarChar(255)
+  topic       String  @db.VarChar(255)
+  description String?
+
+  priceClp Int
+
+  fileKey    String? // pointer to the PRIVATE file in storage (e.g. an S3/R2 key), NOT a public URL
+  coverImage String?
+
+  orderItems     OrderItem[]
+  downloadGrants DownloadGrant[]
+}
+
+// ─────────────────────────────────────────────────────────────
+// ORDER
+// email is ALWAYS set (guest or registered) — it's who you deliver to.
+// userId is optional: null = guest checkout, set = logged-in user.
+// ─────────────────────────────────────────────────────────────
+model Order {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  status Status @default(PENDING)
+
+  email  String // delivery address for the download — required for EVERY order
+  userId Int? // null = guest; set = the User who was logged in
+  user   User?  @relation(fields: [userId], references: [id])
+
+  // Amount actually charged, computed on the SERVER from DB prices.
+  totalClp Int
+
+  // Payment info — fine to keep here for v1; can graduate to its own
+  // Payment model later if you ever need multiple attempts per order.
+  provider          String? // "webpay" | "mercadopago" | "stripe"
+  providerPaymentId String? // the transaction id returned by the provider
+  paidAt            DateTime?
+
+  items     OrderItem[]
+  downloads DownloadGrant[]
+
+  @@index([email])
+  @@index([userId])
+}
+
+// ─────────────────────────────────────────────────────────────
+// ORDER ITEM  (one line per ebook in an order)
+// The "snapshot" fields freeze what the ebook was called and cost
+// AT PURCHASE TIME — so changing a price later never rewrites history.
+// (Your instinct to copy title/topic onto the order was half-right:
+//  it belongs HERE, on the line item, not on the order.)
+// ─────────────────────────────────────────────────────────────
+model OrderItem {
+  id Int @id @default(autoincrement())
+
+  orderId Int
+  order   Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  ebookId Int
+  ebook   Ebook @relation(fields: [ebookId], references: [id])
+
+  titleSnapshot String @db.VarChar(255)
+  priceClp      Int
+
+  @@unique([orderId, ebookId]) // one line per ebook — for digital goods you own it or you don't
+  @@index([ebookId])
+}
+
+// ─────────────────────────────────────────────────────────────
+// DOWNLOAD GRANT  (the fulfillment layer)
+// This is how a GUEST — who has no account to log into — actually
+// gets their book: a secret token in a link you email them.
+// You don't have to implement this until you build downloads, but
+// it's here so the shape is right and you won't restructure later.
+// ─────────────────────────────────────────────────────────────
+model DownloadGrant {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+
+  orderId Int
+  order   Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  ebookId Int
+  ebook   Ebook @relation(fields: [ebookId], references: [id])
+
+  token         String   @unique // the secret inside the download link
+  expiresAt     DateTime // links should expire
+  maxDownloads  Int      @default(5)
+  downloadCount Int      @default(0)
+
+  @@index([orderId])
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum Status {
+  PENDING // order created, not paid yet
+  PAID // payment confirmed by the provider's webhook
+  DELIVERED // download granted / email sent
+  CANCELLED
+}
