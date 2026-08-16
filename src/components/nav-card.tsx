@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { HighlighterTape} from "@/app/components/highlighter-tape";
+import { HighlighterTape} from "@/components/highlighter-tape";
 
 type Item = { label: string; href: string; color: string; seed: number; rotate: string };
 

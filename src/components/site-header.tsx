@@ -10,8 +10,13 @@ export function SiteHeader() {
                     style={{ borderRadius: "38% 62% 58% 42% / 66% 40% 60% 34%" }}
                 >
                     <h1 className="font-display text-4xl leading-none text-grape sm:text-5xl md:text-6xl">
-                        La Biblioteca de la Profe Javi
+                        La Biblioteca
                     </h1>
+
+                    <h2 className="font-display text-[25px] leading-none text-grape sm:text-[34px] md:text-[42px]">
+                        de la profe Javi
+                    </h2>
+
                     <p className="mt-2 font-sans text-lg font-medium text-grape-soft sm:text-xl">
                         ¡Refuerza tus conocimientos conmigo!
                     </p>

@@ -1,5 +1,6 @@
 import { WashiTape } from "./washi-tape";
-import { BookClassButton} from "@/app/components/book-class-button";
+import { BookClassButton} from "@/components/book-class-button";
+
 
 export function AboutCard() {
     return (
