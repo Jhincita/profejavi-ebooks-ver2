@@ -1,6 +1,8 @@
+import Image from "next/image";
 import { WashiTape } from "./washi-tape";
 import { BuyNowButton } from "./buy-now-button";
 import type { Ebook } from "../../generated/prisma/client";
+import MundoDeLosNumerosCover from "public/portadaimg.png";
 
 export function ProductCard({ ebook }: { ebook: Ebook }) {
     const price = ebook.priceClp.toLocaleString("es-CL");
@@ -9,10 +11,14 @@ export function ProductCard({ ebook }: { ebook: Ebook }) {
         <article className="relative rounded-[28px] bg-mint p-6 pt-10 sm:p-8 sm:pt-10">
             <WashiTape className="-top-4 left-8 rotate-[-8deg]" color="var(--color-mint-deep)" />
             <div className="flex flex-col items-center gap-6 sm:flex-row">
-                <div className="flex aspect-[3/4] w-40 shrink-0 items-center justify-center rounded-lg bg-white/85 p-3 text-center shadow-md ring-1 ring-black/5 sm:w-44">
-          <span className="font-display text-sm leading-tight text-grape/70">
-            Portada:<br />“{ebook.title}”
-          </span>
+                <div className="relative flex aspect-[3/4] w-40 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-white/85 p-3 text-center shadow-md ring-1 ring-black/5 sm:w-44">
+                    <Image
+                        src={MundoDeLosNumerosCover}
+                        alt={`Portada: ${ebook.title}`}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 160px, 176px"
+                    />
                 </div>
                 <div className="text-center sm:text-left">
                     <h2 className="font-display text-2xl leading-tight text-grape sm:text-3xl">“{ebook.title}”</h2>

@@ -18,7 +18,7 @@ export function SiteHeader() {
                     </h2>
 
                     <p className="mt-2 font-sans text-lg font-medium text-grape-soft sm:text-xl">
-                        ¡Refuerza tus conocimientos conmigo!
+                        Matemáticas a tu ritmo y sin tanto sufrimiento
                     </p>
                 </div>
 
