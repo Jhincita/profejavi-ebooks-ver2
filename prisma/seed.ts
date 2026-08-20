@@ -16,6 +16,7 @@ async function main() {
             topic: "Matemáticas",
             description: "Guía de estudio digital.",
             priceClp: 5000,
+            fileKey: "ebooks/el-universo-de-los-numeros.pdf",
             published: true,
         },
     });
