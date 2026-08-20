@@ -23,7 +23,7 @@ export default async function EstadoPage({
 
     const { title, message } = paid
         ? {
-            // TODO add download link route here
+
 
             title: "¡Pago recibido! 🎉",
             message: record
