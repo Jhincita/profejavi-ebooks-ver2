@@ -13,13 +13,13 @@ const checkoutSchema = z.object({
 async function createPendingOrder(email: string, ebooksIds: number[]) {
     const ebooks = await prisma.ebook.findMany({
         where: { id: { in: ebooksIds }, published: true },
-        select: { id: true, title: true, priceClp: true},
+        select: { id: true, title: true, launchPriceClp: true, priceClp: true},
     });
     if (ebooks.length !== ebooksIds.length) {
         return { ok: false as const, error: "Uno o más libros no están disponibles para descarga."};
     }
 
-    const totalClp = ebooks.reduce((sum, e) => sum + e.priceClp, 0);
+    const totalClp = ebooks.reduce((sum, e) => sum + e.launchPriceClp, 0);
     const subject = (
         ebooks.length === 1? ebooks[0].title: `${ebooks.length} libros · La Biblioteca de la Profe Javi`
     ).slice(0, 255);

@@ -39,7 +39,8 @@ model Ebook {
   topic       String  @db.VarChar(255)
   description String?
 
-  priceClp Int
+  launchPriceClp Int @default(3990)
+  priceClp       Int @default(4990)
 
   fileKey    String? // pointer to the PRIVATE file in storage (e.g. an S3/R2 key), NOT a public URL
   coverImage String?

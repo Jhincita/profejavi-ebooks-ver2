@@ -28,11 +28,13 @@ export type AggregateEbook = {
 
 export type EbookAvgAggregateOutputType = {
   id: number | null
+  launchPriceClp: number | null
   priceClp: number | null
 }
 
 export type EbookSumAggregateOutputType = {
   id: number | null
+  launchPriceClp: number | null
   priceClp: number | null
 }
 
@@ -45,6 +47,7 @@ export type EbookMinAggregateOutputType = {
   title: string | null
   topic: string | null
   description: string | null
+  launchPriceClp: number | null
   priceClp: number | null
   fileKey: string | null
   coverImage: string | null
@@ -59,6 +62,7 @@ export type EbookMaxAggregateOutputType = {
   title: string | null
   topic: string | null
   description: string | null
+  launchPriceClp: number | null
   priceClp: number | null
   fileKey: string | null
   coverImage: string | null
@@ -73,6 +77,7 @@ export type EbookCountAggregateOutputType = {
   title: number
   topic: number
   description: number
+  launchPriceClp: number
   priceClp: number
   fileKey: number
   coverImage: number
@@ -82,11 +87,13 @@ export type EbookCountAggregateOutputType = {
 
 export type EbookAvgAggregateInputType = {
   id?: true
+  launchPriceClp?: true
   priceClp?: true
 }
 
 export type EbookSumAggregateInputType = {
   id?: true
+  launchPriceClp?: true
   priceClp?: true
 }
 
@@ -99,6 +106,7 @@ export type EbookMinAggregateInputType = {
   title?: true
   topic?: true
   description?: true
+  launchPriceClp?: true
   priceClp?: true
   fileKey?: true
   coverImage?: true
@@ -113,6 +121,7 @@ export type EbookMaxAggregateInputType = {
   title?: true
   topic?: true
   description?: true
+  launchPriceClp?: true
   priceClp?: true
   fileKey?: true
   coverImage?: true
@@ -127,6 +136,7 @@ export type EbookCountAggregateInputType = {
   title?: true
   topic?: true
   description?: true
+  launchPriceClp?: true
   priceClp?: true
   fileKey?: true
   coverImage?: true
@@ -228,6 +238,7 @@ export type EbookGroupByOutputType = {
   title: string
   topic: string
   description: string | null
+  launchPriceClp: number
   priceClp: number
   fileKey: string | null
   coverImage: string | null
@@ -265,6 +276,7 @@ export type EbookWhereInput = {
   title?: Prisma.StringFilter<"Ebook"> | string
   topic?: Prisma.StringFilter<"Ebook"> | string
   description?: Prisma.StringNullableFilter<"Ebook"> | string | null
+  launchPriceClp?: Prisma.IntFilter<"Ebook"> | number
   priceClp?: Prisma.IntFilter<"Ebook"> | number
   fileKey?: Prisma.StringNullableFilter<"Ebook"> | string | null
   coverImage?: Prisma.StringNullableFilter<"Ebook"> | string | null
@@ -281,6 +293,7 @@ export type EbookOrderByWithRelationInput = {
   title?: Prisma.SortOrder
   topic?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
+  launchPriceClp?: Prisma.SortOrder
   priceClp?: Prisma.SortOrder
   fileKey?: Prisma.SortOrderInput | Prisma.SortOrder
   coverImage?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -300,6 +313,7 @@ export type EbookWhereUniqueInput = Prisma.AtLeast<{
   title?: Prisma.StringFilter<"Ebook"> | string
   topic?: Prisma.StringFilter<"Ebook"> | string
   description?: Prisma.StringNullableFilter<"Ebook"> | string | null
+  launchPriceClp?: Prisma.IntFilter<"Ebook"> | number
   priceClp?: Prisma.IntFilter<"Ebook"> | number
   fileKey?: Prisma.StringNullableFilter<"Ebook"> | string | null
   coverImage?: Prisma.StringNullableFilter<"Ebook"> | string | null
@@ -316,6 +330,7 @@ export type EbookOrderByWithAggregationInput = {
   title?: Prisma.SortOrder
   topic?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
+  launchPriceClp?: Prisma.SortOrder
   priceClp?: Prisma.SortOrder
   fileKey?: Prisma.SortOrderInput | Prisma.SortOrder
   coverImage?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -338,6 +353,7 @@ export type EbookScalarWhereWithAggregatesInput = {
   title?: Prisma.StringWithAggregatesFilter<"Ebook"> | string
   topic?: Prisma.StringWithAggregatesFilter<"Ebook"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"Ebook"> | string | null
+  launchPriceClp?: Prisma.IntWithAggregatesFilter<"Ebook"> | number
   priceClp?: Prisma.IntWithAggregatesFilter<"Ebook"> | number
   fileKey?: Prisma.StringNullableWithAggregatesFilter<"Ebook"> | string | null
   coverImage?: Prisma.StringNullableWithAggregatesFilter<"Ebook"> | string | null
@@ -351,7 +367,8 @@ export type EbookCreateInput = {
   title: string
   topic: string
   description?: string | null
-  priceClp: number
+  launchPriceClp?: number
+  priceClp?: number
   fileKey?: string | null
   coverImage?: string | null
   orderItems?: Prisma.OrderItemCreateNestedManyWithoutEbookInput
@@ -367,7 +384,8 @@ export type EbookUncheckedCreateInput = {
   title: string
   topic: string
   description?: string | null
-  priceClp: number
+  launchPriceClp?: number
+  priceClp?: number
   fileKey?: string | null
   coverImage?: string | null
   orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutEbookInput
@@ -382,6 +400,7 @@ export type EbookUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  launchPriceClp?: Prisma.IntFieldUpdateOperationsInput | number
   priceClp?: Prisma.IntFieldUpdateOperationsInput | number
   fileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -398,6 +417,7 @@ export type EbookUncheckedUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  launchPriceClp?: Prisma.IntFieldUpdateOperationsInput | number
   priceClp?: Prisma.IntFieldUpdateOperationsInput | number
   fileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -414,7 +434,8 @@ export type EbookCreateManyInput = {
   title: string
   topic: string
   description?: string | null
-  priceClp: number
+  launchPriceClp?: number
+  priceClp?: number
   fileKey?: string | null
   coverImage?: string | null
 }
@@ -427,6 +448,7 @@ export type EbookUpdateManyMutationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  launchPriceClp?: Prisma.IntFieldUpdateOperationsInput | number
   priceClp?: Prisma.IntFieldUpdateOperationsInput | number
   fileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -441,6 +463,7 @@ export type EbookUncheckedUpdateManyInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  launchPriceClp?: Prisma.IntFieldUpdateOperationsInput | number
   priceClp?: Prisma.IntFieldUpdateOperationsInput | number
   fileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -455,6 +478,7 @@ export type EbookCountOrderByAggregateInput = {
   title?: Prisma.SortOrder
   topic?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  launchPriceClp?: Prisma.SortOrder
   priceClp?: Prisma.SortOrder
   fileKey?: Prisma.SortOrder
   coverImage?: Prisma.SortOrder
@@ -462,6 +486,7 @@ export type EbookCountOrderByAggregateInput = {
 
 export type EbookAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  launchPriceClp?: Prisma.SortOrder
   priceClp?: Prisma.SortOrder
 }
 
@@ -474,6 +499,7 @@ export type EbookMaxOrderByAggregateInput = {
   title?: Prisma.SortOrder
   topic?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  launchPriceClp?: Prisma.SortOrder
   priceClp?: Prisma.SortOrder
   fileKey?: Prisma.SortOrder
   coverImage?: Prisma.SortOrder
@@ -488,6 +514,7 @@ export type EbookMinOrderByAggregateInput = {
   title?: Prisma.SortOrder
   topic?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  launchPriceClp?: Prisma.SortOrder
   priceClp?: Prisma.SortOrder
   fileKey?: Prisma.SortOrder
   coverImage?: Prisma.SortOrder
@@ -495,6 +522,7 @@ export type EbookMinOrderByAggregateInput = {
 
 export type EbookSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  launchPriceClp?: Prisma.SortOrder
   priceClp?: Prisma.SortOrder
 }
 
@@ -543,7 +571,8 @@ export type EbookCreateWithoutOrderItemsInput = {
   title: string
   topic: string
   description?: string | null
-  priceClp: number
+  launchPriceClp?: number
+  priceClp?: number
   fileKey?: string | null
   coverImage?: string | null
   downloadGrants?: Prisma.DownloadGrantCreateNestedManyWithoutEbookInput
@@ -558,7 +587,8 @@ export type EbookUncheckedCreateWithoutOrderItemsInput = {
   title: string
   topic: string
   description?: string | null
-  priceClp: number
+  launchPriceClp?: number
+  priceClp?: number
   fileKey?: string | null
   coverImage?: string | null
   downloadGrants?: Prisma.DownloadGrantUncheckedCreateNestedManyWithoutEbookInput
@@ -588,6 +618,7 @@ export type EbookUpdateWithoutOrderItemsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  launchPriceClp?: Prisma.IntFieldUpdateOperationsInput | number
   priceClp?: Prisma.IntFieldUpdateOperationsInput | number
   fileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -603,6 +634,7 @@ export type EbookUncheckedUpdateWithoutOrderItemsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  launchPriceClp?: Prisma.IntFieldUpdateOperationsInput | number
   priceClp?: Prisma.IntFieldUpdateOperationsInput | number
   fileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -617,7 +649,8 @@ export type EbookCreateWithoutDownloadGrantsInput = {
   title: string
   topic: string
   description?: string | null
-  priceClp: number
+  launchPriceClp?: number
+  priceClp?: number
   fileKey?: string | null
   coverImage?: string | null
   orderItems?: Prisma.OrderItemCreateNestedManyWithoutEbookInput
@@ -632,7 +665,8 @@ export type EbookUncheckedCreateWithoutDownloadGrantsInput = {
   title: string
   topic: string
   description?: string | null
-  priceClp: number
+  launchPriceClp?: number
+  priceClp?: number
   fileKey?: string | null
   coverImage?: string | null
   orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutEbookInput
@@ -662,6 +696,7 @@ export type EbookUpdateWithoutDownloadGrantsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  launchPriceClp?: Prisma.IntFieldUpdateOperationsInput | number
   priceClp?: Prisma.IntFieldUpdateOperationsInput | number
   fileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -677,6 +712,7 @@ export type EbookUncheckedUpdateWithoutDownloadGrantsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  launchPriceClp?: Prisma.IntFieldUpdateOperationsInput | number
   priceClp?: Prisma.IntFieldUpdateOperationsInput | number
   fileKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -732,6 +768,7 @@ export type EbookSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   title?: boolean
   topic?: boolean
   description?: boolean
+  launchPriceClp?: boolean
   priceClp?: boolean
   fileKey?: boolean
   coverImage?: boolean
@@ -749,6 +786,7 @@ export type EbookSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   title?: boolean
   topic?: boolean
   description?: boolean
+  launchPriceClp?: boolean
   priceClp?: boolean
   fileKey?: boolean
   coverImage?: boolean
@@ -763,6 +801,7 @@ export type EbookSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   title?: boolean
   topic?: boolean
   description?: boolean
+  launchPriceClp?: boolean
   priceClp?: boolean
   fileKey?: boolean
   coverImage?: boolean
@@ -777,12 +816,13 @@ export type EbookSelectScalar = {
   title?: boolean
   topic?: boolean
   description?: boolean
+  launchPriceClp?: boolean
   priceClp?: boolean
   fileKey?: boolean
   coverImage?: boolean
 }
 
-export type EbookOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "published" | "slug" | "title" | "topic" | "description" | "priceClp" | "fileKey" | "coverImage", ExtArgs["result"]["ebook"]>
+export type EbookOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "published" | "slug" | "title" | "topic" | "description" | "launchPriceClp" | "priceClp" | "fileKey" | "coverImage", ExtArgs["result"]["ebook"]>
 export type EbookInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   orderItems?: boolean | Prisma.Ebook$orderItemsArgs<ExtArgs>
   downloadGrants?: boolean | Prisma.Ebook$downloadGrantsArgs<ExtArgs>
@@ -806,6 +846,7 @@ export type $EbookPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     title: string
     topic: string
     description: string | null
+    launchPriceClp: number
     priceClp: number
     fileKey: string | null
     coverImage: string | null
@@ -1242,6 +1283,7 @@ export interface EbookFieldRefs {
   readonly title: Prisma.FieldRef<"Ebook", 'String'>
   readonly topic: Prisma.FieldRef<"Ebook", 'String'>
   readonly description: Prisma.FieldRef<"Ebook", 'String'>
+  readonly launchPriceClp: Prisma.FieldRef<"Ebook", 'Int'>
   readonly priceClp: Prisma.FieldRef<"Ebook", 'Int'>
   readonly fileKey: Prisma.FieldRef<"Ebook", 'String'>
   readonly coverImage: Prisma.FieldRef<"Ebook", 'String'>

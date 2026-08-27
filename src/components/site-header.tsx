@@ -1,4 +1,5 @@
 import { NavCard } from "./nav-card";
+import { NavBar } from "./nav-bar";
 
 export function SiteHeader() {
     return (
@@ -23,7 +24,7 @@ export function SiteHeader() {
                 </div>
 
                 <div className="self-start pt-2 md:pt-4">
-                    <NavCard />
+                    <NavBar />
                 </div>
             </div>
         </header>

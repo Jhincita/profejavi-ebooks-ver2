@@ -94,6 +94,7 @@ export const EbookScalarFieldEnum = {
   title: 'title',
   topic: 'topic',
   description: 'description',
+  launchPriceClp: 'launchPriceClp',
   priceClp: 'priceClp',
   fileKey: 'fileKey',
   coverImage: 'coverImage'

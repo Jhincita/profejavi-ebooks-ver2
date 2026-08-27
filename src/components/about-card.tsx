@@ -1,8 +1,14 @@
-import { WashiTape } from "./washi-tape";
-import { BookClassButton} from "@/components/book-class-button";
+"use client";
+
+import {useRouter} from "next/navigation";
+import {WashiTape} from "./washi-tape";
+import {BubblyButton} from "@/components/reusable-react-components/bubblybutton/BubblyButton";
 
 
 export function AboutCard() {
+
+    const router = useRouter();
+
     return (
         <article
             id="sobre-javi"
@@ -17,10 +23,17 @@ export function AboutCard() {
                         Sobre mí · Profe Javi
                     </h2>
                     <p className="mt-2 font-sans leading-relaxed text-grape-soft">
-                        Descripción — Lorem ipsum. Cuéntales a tus visitantes quién es la Profe
-                        Javi y por qué estas guías les van a encantar.
+                        ¡Hola! Soy Javiera Flores, Ingeniera Civil Industrial y la persona detrás de La
+                        Biblioteca de la Profe Javi. Llevo más de 5 años haciendo clases de Matemáticas y mi
+                        parte favorita de enseñar es ver ese momento en que un alumno se da cuenta de que sí
+                        puede.
                     </p>
-                    <BookClassButton className="mt-5" />
+                    <BubblyButton
+                        onClick={() => router.push("/about")}
+                        color="hsl(189 77.9% 60%)"
+                    >
+                        SOBRE MÍ
+                    </BubblyButton>
                 </div>
 
                 {/* Avatar — swap for the real photo of Javi */}
