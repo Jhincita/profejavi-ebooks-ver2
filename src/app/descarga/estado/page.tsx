@@ -2,7 +2,6 @@
 
 
 import Link from "next/link";
-import "./estado.css";
 
 const MENSAJES: Record<string, { titulo: string; cuerpo: string }> = {
     "no-valido":     { titulo: "Enlace no válido",   cuerpo: "Este enlace de descarga no existe." },

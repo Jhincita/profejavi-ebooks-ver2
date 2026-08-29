@@ -48,7 +48,7 @@ export async function GET(_req: Request, { params }: { params: Promise<{ token: 
     }
 
     const name = buildFileName(grant.ebook.title);
-    return new Response(file.bytes, {
+    return new Response(new Uint8Array(file.bytes), {
         status: 200,
         headers: {
             "content-type": "application/pdf",

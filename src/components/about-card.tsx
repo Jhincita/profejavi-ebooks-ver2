@@ -3,6 +3,7 @@
 import {useRouter} from "next/navigation";
 import {WashiTape} from "./washi-tape";
 import {BubblyButton} from "@/components/reusable-react-components/bubblybutton/BubblyButton";
+import Image from "next/image";
 
 
 export function AboutCard() {
@@ -37,10 +38,14 @@ export function AboutCard() {
                 </div>
 
                 {/* Avatar — swap for the real photo of Javi */}
-                <div className="order-1 flex h-32 w-32 shrink-0 items-center justify-center rounded-2xl bg-white/85 shadow-md ring-1 ring-black/5 sm:order-2">
-          <span className="px-2 text-center font-display text-sm text-grape/60">
-            Foto de Javi
-          </span>
+                <div className="order-1 flex h-32 w-32 shrink-0 items-center justify-center sm:order-2">
+                    <Image
+                        src="/emotes/profe_javi_logo.png"
+                        alt="Foto Profe Javi"
+                        width={128}
+                        height={128}
+                        className="object-cover"
+                    />
                 </div>
             </div>
         </article>

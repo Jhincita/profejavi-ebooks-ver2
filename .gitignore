@@ -41,4 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 
+#test things
+/src/app/api/test-email/route.ts
+
 /src/app/generated/prisma
